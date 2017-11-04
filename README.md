@@ -1,0 +1,2 @@
+# TakingOnLineTest_MadeEasy
+This python program takes a snapshot of the screen,  uses a 3rd part OCR Capture2Text to parse the image into text, then save it to a JSON file with keyword and frequency. When taking the test, it can tell you 1.  which previous picture has the best hit in keywords to answer your question, usually keyword match >50%, 2. which picture is irrelevant, usually key words match &lt; 20%
