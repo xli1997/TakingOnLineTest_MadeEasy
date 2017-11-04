@@ -32,13 +32,13 @@ if len(names) > 0:
 			index = i
 index += 1
 
-def compare_dictionary(dict1, dict2):
-	list1 = dict1.keys()
-	list2 = dict2.keys()
-	set1 = set(list1)
-	set2 = set(list2)
-	set3 = set1 & set2
-	fraction = len(set3)*100/len(set1)
+def compare_dictionary(src, dst):
+	list_src = src.keys()
+	list_dst = dst.keys()
+	set_src = set(list_src)
+	set_dst = set(list_dst)
+	set_match = set_src & set_src
+	fraction = len(set_match)*100/len(set_src)
 	return fraction
 
 #main loop
@@ -63,24 +63,24 @@ while(1):
 		print "TEXT_SOURCE not exist"
 
 	#generate dictionary
-	dict1 = {}
-	file1 =open(text_fullpath, 'r')
+	dict_src = {}
+	file_src =open(text_fullpath, 'r')
 	lines = file1.readlines()
 	for line in lines:
 		items = line.split()
 		for item in items:
-			if dict1.has_key(item):
-				dict1[item] += 1
+			if dict_src.has_key(item):
+				dict_src[item] += 1
 			else:
-				dict1[item] = 1
-	file1.close()
+				dict_src[item] = 1
+	file_src.close()
 	
 	#read file json files to match
 	names = os.listdir(JSON_PATH)
 	for name in names:
 		json_fullpath = JSON_PATH+"\\"+name
-		dict2 = json.load(open(json_fullpath, 'r'))
-		percent = compare_dictionary(dict1, dict2)
+		dict_dst = json.load(open(json_fullpath, 'r'))
+		percent = compare_dictionary(dict_src, dict_dst)
 
 		if percent > 30:
 			print "{0} is a match {1}%".format(name, percent)
@@ -90,7 +90,7 @@ while(1):
 	#write dictionary to json file
 	filename = str(index) + ".json"
 	json_fullpath = JSON_PATH+"\\"+filename
-	json.dump(dict1, open(json_fullpath,'w'))
+	json.dump(dict_src, open(json_fullpath,'w'))
 	
 
 	raw_input("Press Enter to continue...")
