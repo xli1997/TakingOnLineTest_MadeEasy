@@ -3,7 +3,7 @@ from shutil import copyfile
 import json
 
 #define ocr program path
-FOLDER_PATH = r"C:\temp\download\1\Capture2Text_v3.9\Capture2Text"
+FOLDER_PATH = r"C:\Training\Capture2Text_v3.9\Capture2Text"
 EXE_PATH = FOLDER_PATH +r"\Capture2Text.exe"
 OUTPUT_PATH = FOLDER_PATH + r"\Output"
 TEXT_SOURCE = OUTPUT_PATH + "\ocr.txt"
@@ -38,7 +38,7 @@ def compare_dictionary(src, dst):
 	set_src = set(list_src)
 	set_dst = set(list_dst)
 	set_match = set_dst & set_src
-	fraction = len(set_match)*100/len(set_src)
+	fraction = len(set_match)*100//len(set_src)
 	return fraction
 	
 def sort_by_file_name(filenamelist):
@@ -73,7 +73,7 @@ while(1):
 	for line in lines:
 		items = line.split()
 		for item in items:
-			if dict_src.has_key(item):
+			if item in dict_src:
 				dict_src[item] += 1
 			else:
 				dict_src[item] = 1
@@ -100,5 +100,5 @@ while(1):
 	json.dump(dict_src, open(json_fullpath,'w'))
 	
 
-	raw_input("Press Enter to continue...")
+	input("Press Enter to continue...")
 	index += 1
