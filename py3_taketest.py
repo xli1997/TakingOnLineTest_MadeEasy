@@ -48,7 +48,7 @@ def sort_by_file_name(filenamelist):
 #main loop
 while(1):
 	#ocr scan command
-	os.system(EXE_PATH + " " + "50 150 450 360")
+	os.system(EXE_PATH + " " + "30 160 1400 920")
 	
 	#copy image file	
 	filename = str(index) + ".bmp"	
@@ -68,7 +68,7 @@ while(1):
 
 	#generate dictionary
 	dict_src = {}
-	file_src =open(text_fullpath, 'r')
+	file_src =open(text_fullpath, "r", encoding="utf-8", errors="ignore")
 	lines = file_src.readlines()
 	for line in lines:
 		items = line.split()
